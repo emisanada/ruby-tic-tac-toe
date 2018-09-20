@@ -4,7 +4,7 @@ game_round = 0
 players = ["X", "O"]
 
 def player_name(round, players)
-  round % 2 == 0 ? players[0] : players[1]
+   players[round % 2]
 end
 
 def print_board(board)
