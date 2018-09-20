@@ -64,7 +64,7 @@ def check_diagonal(board, players)
     if(board[0] == players[i] && board[4] == players[i] && board[8] == players[i])
       return players[i]
     end
-    if(board[0] == players[i] && board[4] == players[i] && board[8] == players[i])
+    if(board[2] == players[i] && board[4] == players[i] && board[6] == players[i])
       return players[i]
     end
     i += 1
@@ -93,11 +93,12 @@ def main(board_array, game_round, players)
   end
 
   puts "Game finished!!"
-  if winner(board_array, players)
-    puts "The winner is #{winner}!"
+  if !winner(board_array, players).blank?
+    puts "The winner is #{winner(board_array, players)}!"
   else
     puts "DRAW!"
   end
+  print_board(board_array)
 end
 
 main(board_array, game_round, players)
