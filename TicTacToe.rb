@@ -81,9 +81,10 @@ end
 
 def main(board_array, game_round, players)
   while(!is_game_finished?(game_round, board_array, players))
-    print_board(board_array)
     player = player_name(game_round, players)
 
+    print_board(board_array)
+    puts "\n"
     puts "Player #{player} it's your turn!"
 
     play = gets.chomp
@@ -92,10 +93,12 @@ def main(board_array, game_round, players)
     game_round += 1
   end
 
+  puts "\n"
   puts "Game finished!!"
+  puts "\n"
   player = winner(board_array, players)
   if !player.nil?
-    puts "The winner is #{player}!"
+    puts "THE WINNER IS #{player}!"
   else
     puts "DRAW!"
   end
