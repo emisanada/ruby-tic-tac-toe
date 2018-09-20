@@ -3,7 +3,7 @@ board_array = []
 game_round = 0
 players = ["X", "O"]
 
-def player_name(round)
+def player_name(round, players)
   round % 2 == 0 ? players[0] : players[1]
 end
 
@@ -15,19 +15,19 @@ def print_board(board)
   puts "#{board[6]}\t|#{board[7]}\t|#{board[8]}\t\n"
 end
 
-def is_game_finished?(round, board)
+def is_game_finished?(round, board, players)
   if round > 8
     return true
   end
 
-  if check_row(board) || check_column(board) || check_diagonal(board)
+  if check_row(board, players) || check_column(board, players) || check_diagonal(board, players)
     return true
   end
 
   false
 end
 
-def check_row(board)
+def check_row(board, players)
   # [0,1,2], [3,4,5], [6,7,8]
   rows = 0
   while(rows < 7)
@@ -42,7 +42,7 @@ def check_row(board)
   false
 end
 
-def check_column(board)
+def check_column(board, players)
   # [0,3,6], [1,4,7], [2,5,8]
   rows = 0
   while(rows < 3)
@@ -57,7 +57,7 @@ def check_column(board)
   false
 end
 
-def check_diagonal(board)
+def check_diagonal(board, players)
   # [0,4,8], [2,4,6]
   i = 0
   while(i <= 1)
@@ -73,31 +73,31 @@ def check_diagonal(board)
   false
 end
 
-def winner(board)
-  return check_row(board) if !check_row(board).nil?
-  return check_column(board) if !check_column(board).nil?
-  return check_diagonal(board) if !check_diagonal(board).nil?
+def winner(board, players)
+  return check_row(board, players) if !check_row(board, players).nil?
+  return check_column(board, players) if !check_column(board, players).nil?
+  return check_diagonal(board, players) if !check_diagonal(board, players).nil?
   nil
 end
 
-def main
-  while(!is_game_finished?(game_round, board_array))
+def main(board_array, game_round, players)
+  while(!is_game_finished?(game_round, board_array, players))
     print_board(board_array)
 
-    puts "Player #{player_name(game_round)} it's your turn!"
+    puts "Player #{player_name(game_round, players)} it's your turn!"
 
-    player_x_input = gets.chomp
-    board_array[player_x_input.to_i] = player_name(game_round)
+    play = gets.chomp
+    board_array[play.to_i] = player_name(game_round, players)
 
     game_round += 1
   end
 
   puts "Game finished!!"
-  if winner
+  if winner(board_array, players)
     puts "The winner is #{winner}!"
   else
     puts "DRAW!"
   end
 end
 
-main
+main(board_array, game_round, players)
