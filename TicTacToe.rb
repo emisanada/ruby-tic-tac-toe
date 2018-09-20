@@ -4,7 +4,7 @@ game_round = 0
 players = ["X", "O"]
 
 def player_name(round)
-  round % 2 == 0 ? "X" : "O"
+  round % 2 == 0 ? players[0] : players[1]
 end
 
 def print_board(board)
@@ -31,11 +31,11 @@ def check_row(board)
   # [0,1,2], [3,4,5], [6,7,8]
   rows = 0
   while(rows < 7)
-    if(board[rows]  == "X" && board[rows + 1]  == "X" && board[rows + 2] == "X")
-      return "X"
+    if(board[rows]  == players[0] && board[rows + 1]  == players[0] && board[rows + 2] == players[0])
+      return players[0]
     end
-    if(board[rows] == "O" && board[rows + 1] == "O" && board[rows + 2] == "O")
-      return "O"
+    if(board[rows] == players[1] && board[rows + 1] == players[1] && board[rows + 2] == players[1])
+      return players[1]
     end
     rows += 3
   end
@@ -46,11 +46,11 @@ def check_column(board)
   # [0,3,6], [1,4,7], [2,5,8]
   rows = 0
   while(rows < 3)
-    if(board[rows] == "X" && board[rows + 3] == "X" && board[rows + 6] == "X")
-      return "X"
+    if(board[rows] == players[0] && board[rows + 3] == players[0] && board[rows + 6] == players[0])
+      return players[0]
     end
-    if(board[rows] == "O" && board[rows + 1] == "O" && board[rows + 2] == "O")
-      return "O"
+    if(board[rows] == players[1] && board[rows + 1] == players[1] && board[rows + 2] == players[1])
+      return players[1]
     end
     rows += 1
   end
