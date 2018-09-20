@@ -74,27 +74,28 @@ def check_diagonal(board, players)
 end
 
 def winner(board, players)
-  return check_row(board, players) if !check_row(board, players).nil?
-  return check_column(board, players) if !check_column(board, players).nil?
-  return check_diagonal(board, players) if !check_diagonal(board, players).nil?
-  nil
+  return check_row(board, players) if check_row(board, players)
+  return check_column(board, players) if check_column(board, players)
+  return check_diagonal(board, players) if check_diagonal(board, players)
 end
 
 def main(board_array, game_round, players)
   while(!is_game_finished?(game_round, board_array, players))
     print_board(board_array)
+    player = player_name(game_round, players)
 
-    puts "Player #{player_name(game_round, players)} it's your turn!"
+    puts "Player #{player} it's your turn!"
 
     play = gets.chomp
-    board_array[play.to_i] = player_name(game_round, players)
+    board_array[play.to_i] = player
 
     game_round += 1
   end
 
   puts "Game finished!!"
-  if !winner(board_array, players).blank?
-    puts "The winner is #{winner(board_array, players)}!"
+  player = winner(board_array, players)
+  if !player.nil?
+    puts "The winner is #{player}!"
   else
     puts "DRAW!"
   end
