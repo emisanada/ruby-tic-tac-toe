@@ -3,16 +3,16 @@ board_array = []
 game_round = 0
 players = ["X", "O"]
 
-def player_name(round, players)
-   players[round % 2]
-end
-
 def print_board(board)
   puts "    #{board[0]}\t|   #{board[1]}\t|   #{board[2]}\t"
   puts "-------------------------"
   puts "    #{board[3]}\t|   #{board[4]}\t|   #{board[5]}\t\n"
   puts "-------------------------"
   puts "    #{board[6]}\t|   #{board[7]}\t|   #{board[8]}\t\n"
+end
+
+def player_name(round, players)
+   players[round % 2]
 end
 
 def is_game_finished?(round, board, players)
